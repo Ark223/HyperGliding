@@ -36,10 +36,13 @@ Add-on for [Meteor Client][meteor] targeting the 2b2t anarchy server, with pract
 - **Air Place** - Allows blocks to be placed in the air without requiring the adjacent surface.
 - **Auto Web** - Places cobwebs around selected entities with optional movement prediction.
 - **Bounce Fly** - Uses elytra bouncing for fast highway travel with optional obstacle passing.
+- **Control Fly** - Provides controlled elytra flight using predictive movement stabilization.
+- **Deep Trace** - Highlights unusual dropped items found below the configurable Y level.
 - **Easy Access** - Opens hidden containers and supported interactive entities within range.
 - **Fast Portal** - Builds and lights nether portals near the player using minimal obsidian.
 - **FD3 Crafter** - Strictly crafts FD3 firework rockets from available inventory ingredients.
 - **Mining Tweaks** - Enables packet mining, including fast remine and double-break support.
+- **Overview** - Displays a content icon on shulker boxes and bundles for quick identification.
 - **Scaffolding** - Places selected blocks beneath and ahead of the player for safer bridging.
 
 ## 📁 Project Structure
