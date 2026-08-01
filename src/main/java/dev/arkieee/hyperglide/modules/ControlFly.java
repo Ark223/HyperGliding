@@ -51,7 +51,8 @@ public class ControlFly extends Module {
         .defaultValue(34.0)
         .min(0.0)
         .sliderMax(40.0)
-        .build());
+        .build()
+    );
 
     private final Setting<Double> minimum = this.movement.add(new DoubleSetting.Builder()
         .name("minimum-speed")
@@ -59,7 +60,8 @@ public class ControlFly extends Module {
         .defaultValue(30.0)
         .min(0.0)
         .sliderMax(40.0)
-        .build());
+        .build()
+    );
 
     private final Setting<Double> penalty = this.movement.add(new DoubleSetting.Builder()
         .name("ascent-penalty")
@@ -67,25 +69,29 @@ public class ControlFly extends Module {
         .defaultValue(2.0)
         .min(0.0)
         .sliderMax(5.0)
-        .build());
+        .build()
+    );
 
     private final Setting<Boolean> gravity = this.movement.add(new BoolSetting.Builder()
         .name("no-gravity")
         .description("Disables gravity during horizontal movement.")
         .defaultValue(true)
-        .build());
+        .build()
+    );
 
     private final Setting<Boolean> forward = this.auto.add(new BoolSetting.Builder()
         .name("keep-forward")
         .description("Moves forward when no movement key is held.")
         .defaultValue(false)
-        .build());
+        .build()
+    );
 
     private final Setting<Boolean> starter = this.auto.add(new BoolSetting.Builder()
         .name("auto-takeoff")
         .description("Starts gliding after holding jump while airborne.")
         .defaultValue(false)
-        .build());
+        .build()
+    );
 
     private final Setting<Integer> timer = this.auto.add(new IntSetting.Builder()
         .name("takeoff-timer")
@@ -94,7 +100,8 @@ public class ControlFly extends Module {
         .min(1)
         .sliderMax(10)
         .visible(this.starter::get)
-        .build());
+        .build()
+    );
 
     private final Boost boost = new Boost();
     private final Flight flight = new Flight();
