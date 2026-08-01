@@ -40,7 +40,8 @@ public class BounceFly extends Module {
         .name("pitch")
         .description("The pitch used while bouncing.")
         .defaultValue(72.4)
-        .sliderRange(-90, 90)
+        .min(-90.0)
+        .sliderMax(90.0)
         .decimalPlaces(2)
         .build()
     );
@@ -64,8 +65,8 @@ public class BounceFly extends Module {
         .name("collision-ticks")
         .description("How many movement ticks ahead to scan for obstacles.")
         .defaultValue(8)
-        .range(3, 10)
-        .sliderRange(3, 10)
+        .min(3)
+        .sliderMax(10)
         .visible(() -> this.obstacle.get() && this.avoid.get())
         .build()
     );
@@ -302,7 +303,8 @@ public class BounceFly extends Module {
 
     private void rotate() {
         float yaw = (float) Math.toDegrees(
-            Math.atan2(-this.dx, this.dz));
+            Math.atan2(-this.dx, this.dz)
+        );
 
         this.mc.player.setYaw(yaw);
         this.mc.player.setHeadYaw(yaw);

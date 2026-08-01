@@ -129,7 +129,9 @@ public class FastPortal extends Module {
 
     @EventHandler
     private void onTick(TickEvent.Pre event) {
-        if (this.mc.player == null || this.mc.world == null) return;
+        if (this.mc.player == null || this.mc.world == null) {
+            return;
+        }
 
         this.skip();
 
@@ -174,7 +176,8 @@ public class FastPortal extends Module {
 
             if (!this.mc.world.getBlockState(pos).isOf(Blocks.OBSIDIAN)) {
                 event.renderer.box(pos, this.side.get(),
-                    this.line.get(), this.shape.get(), 0);
+                    this.line.get(), this.shape.get(), 0
+                );
             }
         }
     }
@@ -206,8 +209,10 @@ public class FastPortal extends Module {
 
     private void skip() {
         while (this.index < this.portal.size() &&
-            this.mc.world.getBlockState(this.portal.get(this.index))
-                .isOf(Blocks.OBSIDIAN)) {
+            this.mc.world.getBlockState(
+                this.portal.get(this.index)
+            ).isOf(Blocks.OBSIDIAN)
+        ) {
             this.index++;
         }
     }
@@ -230,7 +235,8 @@ public class FastPortal extends Module {
             try {
                 this.mc.player.networkHandler.sendPacket(
                     new PlayerInteractBlockC2SPacket(Hand.OFF_HAND, hit,
-                        this.mc.player.currentScreenHandler.getRevision() + 2)
+                        this.mc.player.currentScreenHandler.getRevision() + 2
+                    )
                 );
             } finally {
                 this.mc.player.networkHandler.sendPacket(swap);
@@ -293,10 +299,12 @@ public class FastPortal extends Module {
 
     private int count() {
         int count = 0;
+
         for (int idx = 0; idx < 9; idx++) {
             ItemStack stack = this.mc.player.getInventory().getStack(idx);
             if (stack.isOf(Items.OBSIDIAN)) count += stack.getCount();
         }
+
         return count;
     }
 

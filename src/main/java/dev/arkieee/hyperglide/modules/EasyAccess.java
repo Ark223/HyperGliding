@@ -120,9 +120,11 @@ public class EasyAccess extends Module {
             && hit.getType() == HitResult.Type.BLOCK) {
             return this.container(hit.getBlockPos());
         }
+
         if (this.mc.crosshairTarget instanceof EntityHitResult hit) {
             return this.container(hit.getEntity());
         }
+
         return false;
     }
 
@@ -289,6 +291,7 @@ public class EasyAccess extends Module {
                 value = current;
             }
         }
+
         return best;
     }
 

@@ -69,7 +69,8 @@ public class AirPlace extends Module {
 
     public AirPlace() {
         super(Hyperglide.CATEGORY, "air-place",
-            "Places one block in the air per right-click.");
+            "Places one block in the air per right-click."
+        );
     }
 
     @Override
@@ -88,7 +89,9 @@ public class AirPlace extends Module {
 
     @EventHandler
     private void onTick(TickEvent.Post event) {
-        if (this.mc.player == null || this.mc.world == null || this.mc.getCameraEntity() == null) {
+        if (this.mc.player == null ||
+            this.mc.world == null ||
+            this.mc.getCameraEntity() == null) {
             this.hit = null;
             this.lock = false;
             return;
@@ -110,7 +113,9 @@ public class AirPlace extends Module {
             return;
         }
 
-        HitResult ray = this.mc.getCameraEntity().raycast(this.range.get(), 0.0F, false);
+        HitResult ray = this.mc.getCameraEntity().raycast(
+            this.range.get(), 0.0F, false
+        );
 
         if (ray instanceof BlockHitResult block &&
             this.mc.world.getBlockState(block.getBlockPos()).isReplaceable()) {

@@ -156,9 +156,11 @@ public class Scaffolding extends Module {
         if (!this.render.get() || this.mc.world == null) {
             return;
         }
+
         for (BlockPos pos : this.queue) {
             this.box(event, pos);
         }
+
         for (BlockPos pos : this.marks.keySet()) {
             if (!this.queue.contains(pos)) this.box(event, pos);
         }
@@ -262,6 +264,7 @@ public class Scaffolding extends Module {
 
             return new BlockHitResult(hit, face, near, false);
         }
+
         return new BlockHitResult(Vec3d.ofCenter(pos), Direction.UP, pos, false);
     }
 
@@ -305,24 +308,30 @@ public class Scaffolding extends Module {
                 if (dx * dx + dz * dz < edge * edge) return true;
             }
         }
+
         return false;
     }
 
     private Vec3d move() {
         Vec3d move = Vec3d.ZERO;
         float yaw = this.mc.player.getYaw();
+
         if (this.mc.options.forwardKey.isPressed()) {
             move = move.add(Vec3d.fromPolar(0, yaw));
         }
+
         if (this.mc.options.backKey.isPressed()) {
             move = move.add(Vec3d.fromPolar(0, yaw + 180));
         }
+
         if (this.mc.options.leftKey.isPressed()) {
             move = move.add(Vec3d.fromPolar(0, yaw - 90));
         }
+
         if (this.mc.options.rightKey.isPressed()) {
             move = move.add(Vec3d.fromPolar(0, yaw + 90));
         }
+
         return move.lengthSquared() == 0 ? Vec3d.ZERO : move.normalize();
     }
 

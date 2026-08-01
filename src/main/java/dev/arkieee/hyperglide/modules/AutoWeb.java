@@ -209,8 +209,10 @@ public class AutoWeb extends Module {
         }
 
         Vec3d center = Vec3d.ofCenter(pos);
-        return this.mc.player.getEyePos().squaredDistanceTo(
-            center) <= this.range.get() * this.range.get();
+        Vec3d eye = this.mc.player.getEyePos();
+
+        return center.squaredDistanceTo(eye) <=
+            this.range.get() * this.range.get();
     }
 
     private int slot() {
@@ -240,7 +242,8 @@ public class AutoWeb extends Module {
 
             this.mc.player.networkHandler.sendPacket(
                 new PlayerInteractBlockC2SPacket(Hand.OFF_HAND, this.hit(pos),
-                    this.mc.player.currentScreenHandler.getRevision() + 2)
+                    this.mc.player.currentScreenHandler.getRevision() + 2
+                )
             );
 
             this.mc.player.networkHandler.sendPacket(swap);
@@ -271,6 +274,7 @@ public class AutoWeb extends Module {
 
             return new BlockHitResult(hit, face, near, false);
         }
+
         return new BlockHitResult(Vec3d.ofCenter(pos), Direction.UP, pos, false);
     }
 

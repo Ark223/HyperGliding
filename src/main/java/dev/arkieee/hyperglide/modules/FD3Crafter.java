@@ -157,7 +157,7 @@ public class FD3Crafter extends Module {
 
     private void clear() {
         if (!this.handler().getCursorStack().isEmpty()) {
-            this.error("Clear the cursor before enabling crafter.");
+            this.error("Clear cursor before enabling crafter.");
             this.toggle();
             return;
         }
@@ -302,8 +302,8 @@ public class FD3Crafter extends Module {
     }
 
     private void stack() {
-        if (!this.handler().getCursorStack().isOf(Items.GUNPOWDER) ||
-            this.handler().getCursorStack().getCount() != 64) {
+        if (!this.handler().getCursorStack().isOf(Items.GUNPOWDER)
+            || this.handler().getCursorStack().getCount() != 64) {
             this.fail("Full gunpowder pickup failed.");
             return;
         }
@@ -431,8 +431,10 @@ public class FD3Crafter extends Module {
     }
 
     private void click(int slot, int button, SlotActionType action) {
-        this.mc.interactionManager.clickSlot(this.handler().syncId,
-            slot, button, action, this.mc.player);
+        this.mc.interactionManager.clickSlot(
+            this.handler().syncId, slot,
+            button, action, this.mc.player
+        );
     }
 
     private PlayerScreenHandler handler() {
@@ -451,6 +453,7 @@ public class FD3Crafter extends Module {
     private int largest(Item item, int min) {
         int slot = -1;
         int count = min - 1;
+
         for (int idx = PlayerScreenHandler.INVENTORY_START;
             idx < PlayerScreenHandler.HOTBAR_END; idx++) {
             ItemStack stack = this.stack(idx);
@@ -460,6 +463,7 @@ public class FD3Crafter extends Module {
                 count = stack.getCount();
             }
         }
+
         return slot;
     }
 
@@ -478,6 +482,7 @@ public class FD3Crafter extends Module {
 
     private int fulls(Item item) {
         int count = 0;
+
         for (int idx = PlayerScreenHandler.INVENTORY_START;
             idx < PlayerScreenHandler.HOTBAR_END; idx++) {
             ItemStack stack = this.stack(idx);
@@ -487,6 +492,7 @@ public class FD3Crafter extends Module {
                 count++;
             }
         }
+
         return count;
     }
 
@@ -499,16 +505,20 @@ public class FD3Crafter extends Module {
 
     private int count(Item item) {
         int count = 0;
+
         for (int idx = PlayerScreenHandler.INVENTORY_START;
             idx < PlayerScreenHandler.HOTBAR_END; idx++) {
+
             ItemStack stack = this.stack(idx);
             if (stack.isOf(item)) count += stack.getCount();
         }
+
         return count;
     }
 
     private int[] pair() {
         int first = -1;
+
         for (int idx = PlayerScreenHandler.INVENTORY_START;
             idx < PlayerScreenHandler.HOTBAR_END; idx++) {
             ItemStack stack = this.stack(idx);
@@ -522,6 +532,7 @@ public class FD3Crafter extends Module {
                 return new int[] { idx, first };
             }
         }
+
         return null;
     }
 
@@ -542,12 +553,14 @@ public class FD3Crafter extends Module {
 
     private int rockets() {
         int count = 0;
+
         for (int idx = PlayerScreenHandler.INVENTORY_START;
             idx < PlayerScreenHandler.HOTBAR_END; idx++) {
 
             ItemStack stack = this.stack(idx);
             if (this.rocket(stack)) count += stack.getCount();
         }
+
         return count;
     }
 }

@@ -16,13 +16,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class KeyboardInputMixin {
     @Inject(method = "tick", at = @At("TAIL"))
     private void onTick(CallbackInfo info) {
-        MinecraftClient mc = MinecraftClient.getInstance();
-        if (!(mc.currentScreen instanceof HandledScreen<?>) &&
-            !(mc.currentScreen instanceof WidgetScreen)) {
+        MinecraftClient client = MinecraftClient.getInstance();
+        if (!(client.currentScreen instanceof HandledScreen<?>) &&
+            !(client.currentScreen instanceof WidgetScreen)) {
             return;
         }
 
-        BounceFly fly = Modules.get().get(BounceFly.class);
-        if (fly != null) fly.input((Input) (Object) this);
+        BounceFly module = Modules.get().get(BounceFly.class);
+        if (module != null) module.input((Input) (Object) this);
     }
 }
